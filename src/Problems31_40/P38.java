@@ -1,55 +1,30 @@
 package Problems31_40;
-
 import java.util.*;
-
 public class P38 {
-
 	public static void main(String[] args) {
-		Set<Integer> s = sieve();
-		long sum = 0;
-		
-		for(int i: s) {
-			if(i<=10) continue;
-			int c = i;
-			boolean b = true;
-			long lo = 1;
-			for(int j = 1; j < Integer.toString(i).length(); j++) lo*=10;
-			while(c>10) {
-				if(!s.contains(c)) {
-					b = false;
-					break;
+		List<String> l = new ArrayList<>();
+		for(int i = 2; i < 10; i++) {
+			for(int j = 9; j < 100000; j++) {
+				StringBuilder s = new StringBuilder();
+				Set<Integer> set = new HashSet<>();
+				for(int k = 1; k<=i;k++) {
+					int val = j*k;
+					int v = val;
+					while(v>0) {
+						set.add(v%10);
+						v/=10;
+					}
+					s.append(val);
 				}
-				c%=lo;
-				lo/=10;
-			}
-			b &= s.contains(c);
-			c=i;
-			while(c>10) {
-				if(!s.contains(c)) {
-					b = false;
-					break;
+				if(s.length()>9) continue;
+				System.out.println(s);
+				if(set.size()==9&&!set.contains(0)&&s.length()==9) {
+					l.add(s.toString());
 				}
-				c/=10;
-			}
-			if(b && s.contains(c)) {
-				System.out.println(i);
-				sum+=i;
+				
 			}
 		}
-		System.out.println(sum);
+		Collections.sort(l,Collections.reverseOrder());
+		System.out.println(l.get(0));
 	}
-	static Set<Integer> sieve(){
-		Set<Integer> l = new HashSet<>();
-		boolean[] arr = new boolean[10000000];
-		for(int i = 2; i < 10000000; i++) {
-			if(!arr[i]) {
-				l.add(i);
-				for(int j = i; j < 10000000; j+=i) {
-					arr[j] = true;
-				}
-			}
-		}
-		return l;
-	}
-
 }

@@ -4,6 +4,11 @@ My journey from no AIME -> a little better at math
 
 ### Progress Tracking, I guess
 11/10/2025: Start  
-11/11/2025: (29/100)  
+
+11/10/2025: (29/100)  
+11/11/2025: (39/100)
+
+### To revisit (someday)
+P15, P24, P39
 
 [Project Euler](projecteuler.net)

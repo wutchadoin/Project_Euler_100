@@ -6,18 +6,26 @@ public class P35 {
 		Set<Integer> circular = new HashSet<>();
 		for(int i: s) {
 			String cur = Integer.toString(i);
+			boolean br = false;
 			if(cur.length()==1) {
 				circular.add(i);
 				continue;
 			}
+			for(char c: cur.toCharArray()) if((c-'0')%2==0||c=='5') {
+				br = true;
+				break;
+			}
+			if(br) continue;
 			
 			boolean add = true;
+			int c = i;
 			for(int j = 0; j < cur.length(); j++) {
-				if(!s.contains(Integer.parseInt(cur))) {
+				if(!s.contains(c)) {
 					add = false;
 					break;
 				}
-				cur = cur.substring(1) + String.valueOf(cur.charAt(0));
+				//System.out.println(c);
+				c = (c/10)+(c%10)*(int)Math.pow(10, cur.length()-1);
 				
 			}
 			if(add) circular.add(i);
